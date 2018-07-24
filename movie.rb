@@ -23,12 +23,14 @@ class Actor
     end
 
     def movies
-        movie_table =  self.get_page.css('#mw-content-text > div > table:nth-child(8) > tbody').children
-
-        (2...10).step(2).map do |index|
-            movie_table[index].children[3].children.children[0].attributes['title'].value
-            # binding.pry
+        self.get_page.css('#mw-content-text > div > table > tbody tr td i a').map do |item|
+            item.attributes['href'].value    
         end
+        # binding.pry
+        #todo: iterate over all children, not just (2...10)
+        # (2..10).step(2).map do |index|
+        #     movie_table[index].children[3].children.children[0].attributes['href'].value
+            # binding.pry
         # movie_table[2].children[3].children.children[0].attributes['title'].value
         # self.get_page(name).css('#mw-content-text > div > table:nth-child(8) > tbody').children[2].children[3].children.children[0].attributes['title'].value
     end
