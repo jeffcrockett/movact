@@ -11,9 +11,11 @@ class Movie
     end
 
     def actors
-        ul = self.get_page.css('#mw-content-text > div > div.div-col.columns.column-width > ul')
+        self.get_page.css('#mw-content-text > div > div.div-col.columns.column-width > ul li a').map do |item|
+            item.attributes['href'].value
+        end
         #todo: iterate over ul children to collect each url
-        ul.children[0].children[0].attributes['value']
+        
     end
 end
 
